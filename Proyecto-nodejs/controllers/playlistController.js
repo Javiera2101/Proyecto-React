@@ -152,6 +152,35 @@ const removeSongFromPlaylist = async (req, res) => {
     }
 };
 
+const cambiarModoReproduccion = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { modoReproduccion } = req.body;
+
+    const modosValidos = ['orden', 'shuffle', 'repeat'];
+    if (!modosValidos.includes(modoReproduccion)) {
+      return res.status(400).json({ error: 'Modo de reproducción inválido.' });
+    }
+
+    const playlist = await Playlist.findByIdAndUpdate(
+        id,
+        { modoReproduccion },
+        { new: true }
+    );
+
+    if (!playlist) {
+      return res.status(404).json({ error: 'Playlist no encontrada.' });
+    }
+
+    res.status(200).json({
+      mensaje: 'Modo de reproducción actualizado correctamente.',
+      playlist
+    });
+  } catch (error) {
+    console.error('Error al cambiar el modo de reproducción:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+};
 
 module.exports = {
   createPlaylist,
@@ -159,5 +188,6 @@ module.exports = {
   updatePlaylist,
   deletePlaylist,
   addSongToPlaylist,      
-  removeSongFromPlaylist, 
+  removeSongFromPlaylist,
+  cambiarModoReproduccion,
 };

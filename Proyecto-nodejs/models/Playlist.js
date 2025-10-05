@@ -23,6 +23,11 @@ const playlistSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId, // Guardará una referencia a un usuario
     required: true,
     ref: 'User' // Establece la relación con el modelo 'User'
+  },
+  modoReproduccion: {
+    type: String,
+    enum: ['orden', 'shuffle', 'repeat'], // modos permitidos
+    default: 'orden' // valor por defecto
   }
 }, {
   timestamps: true

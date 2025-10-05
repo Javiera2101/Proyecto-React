@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { createPlaylist, getMyPlaylists, updatePlaylist, deletePlaylist, addSongToPlaylist, removeSongFromPlaylist } = require('../controllers/playlistController.js');
+const { createPlaylist, getMyPlaylists, updatePlaylist, deletePlaylist, addSongToPlaylist, removeSongFromPlaylist,
+    cambiarModoReproduccion } = require('../controllers/playlistController.js');
 const { protect } = require('../middleware/authMiddleware.js'); // 1. Importamos al "guardia"
 
 // 2. Le decimos a la ruta que use el middleware 'protect' antes de ejecutar 'createPlaylist'
@@ -23,5 +24,8 @@ router.route('/:id/songs')
 
 router.route('/:id/songs/:songId')
     .delete(protect, removeSongFromPlaylist);
+
+router.route('/:id/modo')
+    .patch(protect, cambiarModoReproduccion);
 
 module.exports = router;
