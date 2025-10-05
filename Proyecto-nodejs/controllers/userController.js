@@ -4,7 +4,40 @@ const jwt = require('jsonwebtoken'); // 1. Importar jsonwebtoken
 
 // ... (la función registerUser que ya teníamos se queda igual)
 const registerUser = async (req, res) => {
-    // ... nuestro código de registro existente
+  try {
+    // 1. Obtener los datos del cuerpo de la petición
+    const { username, email, password } = req.body;
+
+    // 2. Verificar si el usuario ya existe
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: 'El usuario ya existe' });
+    }
+
+    // 3. Hashear la contraseña
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // 4. Crear el nuevo usuario
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    // 5. Enviar una respuesta exitosa
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      });
+    } else {
+      res.status(400).json({ message: 'Datos de usuario inválidos' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error del servidor', error: error.message });
+  }
 };
 
 
