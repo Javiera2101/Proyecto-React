@@ -1,15 +1,26 @@
 const express = require('express');
 const router = express.Router();
-// 1. Importar loginUser junto a registerUser
-const { registerUser, loginUser, getUserProfile, updateUserProfile } = require('../controllers/userController.js');
+const {
+  registerUser,
+  loginUser,
+  getUserProfile,
+  updateUserProfile,
+  updateUserEmail,
+  updateUserAutoplay,
+} = require('../controllers/userController.js');
 const { protect } = require('../middleware/authMiddleware.js');
 
+// Rutas públicas
 router.post('/register', registerUser);
-// 2. Añadir la nueva ruta para el login
 router.post('/login', loginUser);
 
+// Rutas protegidas para el perfil completo
 router.route('/profile')
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
+
+// Rutas protegidas para actualizaciones parciales (PATCH)
+router.patch('/profile/email', protect, updateUserEmail);
+router.patch('/profile/autoplay', protect, updateUserAutoplay);
 
 module.exports = router;

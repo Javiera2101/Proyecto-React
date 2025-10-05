@@ -11,6 +11,11 @@ export function Sidebar() {
       <Nav className="flex-column">
         {/* Usamos 'as={Link}' para que los Nav.Link se comporten como links de React Router */}
      <Nav className="flex-column">
+        <img 
+              src="/images/logo.png" 
+              alt="Logo de prueba" 
+              style={{ width: '200px' }} 
+            />
         <Nav.Link as={Link} to="/"><BsHouseDoorFill className="me-2" /> Inicio</Nav.Link>
         <Nav.Link as={Link} to="/search"><BsSearch className="me-2" /> Buscar</Nav.Link> 
         <Nav.Link as={Link} to="/library"><BsCollectionFill className="me-2" /> Tu Biblioteca</Nav.Link>

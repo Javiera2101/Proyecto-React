@@ -71,6 +71,9 @@ export function Library() {
           <Tab eventKey="artists" title="Artistas">
             <p className="subtitle">Aquí aparecerán tus artistas seguidos.</p>
           </Tab>
+          <Tab eventKey="download" title="Descargas">
+            <p className="subtitle">Aquí aparecerán tus descargas.</p>
+          </Tab>
         </Tabs>
       </Container>
     </div>

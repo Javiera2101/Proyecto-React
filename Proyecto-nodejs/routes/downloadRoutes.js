@@ -1,7 +1,12 @@
+// routes/downloadRoutes.js
 const express = require('express');
 const router = express.Router();
-const { downloadAudio } = require('../controllers/downloadController.js');
+const { downloadSong } = require('../controllers/downloadController.js');
 
-router.post('/', downloadAudio);
+// Esta ruta puede ser protegida si quieres que solo usuarios logueados descarguen
+// const { protect } = require('../middleware/authMiddleware.js');
+// router.post('/', protect, downloadSong);
+
+router.post('/', downloadSong);
 
 module.exports = router;

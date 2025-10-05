@@ -1,33 +1,25 @@
-// models/Playlist.js
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const playlistSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    default: '', // Valor por defecto si no se proporciona
-  },
-  songs: [
-    {
-      // Por ahora lo dejaremos simple, ya lo expandiremos después
-      title: String,
-      artist: String,
-      youtubeUrl: String
-    }
-  ],
-  user: {
-    type: mongoose.Schema.Types.ObjectId, // Guardará una referencia a un usuario
-    required: true,
-    ref: 'User' // Establece la relación con el modelo 'User'
-  }
-}, {
-  timestamps: true
+const songSchema = new Schema({
+  youtubeId: { type: String, required: true },
+  title: { type: String, required: true },
+  artist: { type: String },
+  thumbnail: { type: String },
+  duration: { type: Number },
+  streamUrl: { type: String, required: true },
 });
 
-const Playlist = mongoose.model('Playlist', playlistSchema);
+const playlistSchema = new Schema({
+  name: { type: String, required: true },
+  description: { type: String, default: '' },
+  songs: [songSchema],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  }
+}, { timestamps: true });
 
+const Playlist = mongoose.model('Playlist', playlistSchema);
 module.exports = Playlist;

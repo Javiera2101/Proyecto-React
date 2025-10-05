@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import {Mic2, Music, Guitar, Disc3, Headphones, Drum} from "lucide-react";
 import { Artista } from "../pages/Artista";
 import { Genero } from "../pages/Genero";
 import {useNavigate} from "react-router-dom";
 import { artistas } from "../data/artistas";
 import { generos } from "../data/generos";
+import { BsShare, BsDownload } from 'react-icons/bs';
 
 export function MainContent() {
   const navigate = useNavigate();
@@ -32,6 +33,20 @@ export function MainContent() {
                   <Card.Body>
                     <Card.Title>{album.title}</Card.Title>
                     <Card.Text>{album.artist}</Card.Text>
+                    <div className="d-flex">
+                    <Button 
+                      variant="light" 
+                      className="d-flex align-items-center justify-content-center me-2"
+                    >
+                      <BsShare />
+                    </Button>
+                    <Button 
+                      variant="light" 
+                      className="d-flex align-items-center justify-content-center"
+                    >
+                      <BsDownload />
+                    </Button>
+                  </div>
                   </Card.Body>
                 </Card>
               </Col>

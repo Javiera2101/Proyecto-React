@@ -1,38 +1,35 @@
+// index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors'); // Importamos cors
-const path = require('path');
-const userRoutes = require('./routes/userRoutes.js'); // Importamos nuestras rutas
+const cors = require('cors');
+const path = require('path'); // Asegúrate de que path está importado
+
+// Importar rutas
+const userRoutes = require('./routes/userRoutes.js');
 const playlistRoutes = require('./routes/playlistRoutes.js');
-const downloadRoutes = require('./routes/downloadRoutes.js');
+const youtubeRoutes = require('./routes/youtubeRoutes.js');
+const downloadRoutes = require('./routes/downloadRoutes.js'); // <-- AÑADIR
 
 dotenv.config();
-
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-// Middlewares
-app.use(cors()); // Usamos cors para permitir peticiones desde el frontend
-app.use(express.json()); // MUY IMPORTANTE: para que el backend entienda el JSON que envía el frontend
+app.use(cors());
+app.use(express.json());
+
+// <-- AÑADIR ESTA LÍNEA DE NUEVO
+app.use('/downloads', express.static(path.join(__dirname, 'downloads')));
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('¡Conexión exitosa a MongoDB!'))
   .catch((error) => console.error('Error de conexión a MongoDB:', error));
 
-// Rutas
-app.get('/', (req, res) => {
-  res.send('API del reproductor de música funcionando...');
-});
+// Rutas de la API
+app.use('/api/users', userRoutes);
+app.use('/api/playlists', playlistRoutes);
+app.use('/api/youtube', youtubeRoutes);
+app.use('/api/download', downloadRoutes); // <-- AÑADIR
 
-app.use('/downloads', express.static(path.join(__dirname, 'downloads'))); // Servimos archivos estáticos desde la carpeta 'downloads'
-
-app.use('/api/users', userRoutes); // Le decimos a la app que use las rutas de usuario
-app.use('/api/playlists', playlistRoutes); // Rutas de playlists
-app.use('/api/download', downloadRoutes); // Rutas de descarga
-
-
-
-app.listen(PORT, () => {
-  console.log(`Servidor iniciado en el puerto ${PORT}`);
-});
+app.get('/', (req, res) => res.send('API funcionando...'));
+app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

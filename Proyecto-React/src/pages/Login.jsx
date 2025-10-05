@@ -8,7 +8,11 @@ export function Login() {
       <Row>
         <Col md={12}>
           <div className="text-center mb-4">
-            <h1 className="text-white">🎵 SingleMusic</h1>
+             <img 
+              src="/images/logo.png" 
+              alt="Logo de prueba" 
+              style={{ width: '250px' }} 
+            />
             <p className="subtitle">Inicia sesión para continuar</p>
           </div>
           <Form style={{ width: '320px' }}>
