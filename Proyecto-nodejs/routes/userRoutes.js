@@ -17,6 +17,6 @@ router.route('/profile')
   .put(protect, updateUserProfile);
 
 //Nueva ruta PATCH solo para actualizar el email del usuario
-router.patch('/cambiarEmail', protect, updateUserEmail);
+router.patch('/update-email', protect, updateUserEmail);
 
 module.exports = router;
