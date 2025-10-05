@@ -1,15 +1,22 @@
 const express = require('express');
 const router = express.Router();
-// 1. Importar loginUser junto a registerUser
-const { registerUser, loginUser, getUserProfile, updateUserProfile } = require('../controllers/userController.js');
+const { 
+  registerUser, 
+  loginUser, 
+  getUserProfile, 
+  updateUserProfile,
+  updateUserEmail //nuevo controlador
+} = require('../controllers/userController.js');
 const { protect } = require('../middleware/authMiddleware.js');
 
 router.post('/register', registerUser);
-// 2. Añadir la nueva ruta para el login
 router.post('/login', loginUser);
 
 router.route('/profile')
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
+
+//Nueva ruta PATCH solo para actualizar el email del usuario
+router.patch('/cambiarEmail', protect, updateUserEmail);
 
 module.exports = router;
