@@ -1,0 +1,79 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #121212;
+  color: white;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #000000;
+  width: 240px;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .nav-link {
+  color: #b3b3b3;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sidebar .nav-link:hover {
+  color: #ffffff;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.player-bar {
+  background-color: #181818;
+  border-top: 1px solid #282828;
+  height: 90px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilos para las pestañas de la Biblioteca */
+#library-tabs .nav-link {
+  color: #b3b3b3; /* Color de texto inactivo */
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+#library-tabs .nav-link.active {
+  color: #ffffff; /* Color de texto activo */
+  background-color: transparent; /* Sin fondo */
+  border-bottom: 2px solid #1db954; /* Subrayado verde (color Spotify) */
+}
+
+#library-tabs .nav-link:hover {
+  color: #ffffff;
+}
+
+.subtitle {
+  color: #a0a0a0; /* Un gris claro, puedes cambiar el color que quieras */
+}
+
+.link {
+  color: #a0a0a0;
+  text-decoration: none; /* Opcional: para quitar el subrayado */
+}
+
+.link:hover {
+  color: #ffffff; /* Cambia a blanco al pasar el mouse */
+  text-decoration: underline;
+}

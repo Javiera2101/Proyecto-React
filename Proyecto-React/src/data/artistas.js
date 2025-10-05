@@ -1,0 +1,8 @@
+export const artistas = [
+    { id: "1", nombre: "Taylor Swift", descripcion: "Cantante y compositora estadounidense conocida por sus éxitos en pop y country, famosa por sus letras personales y narrativas.", foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_4.png/960px-Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_4.png" },
+    { id: "2", nombre: "Bad Bunny", descripcion: "Artista puertorriqueño de reggaetón y trap, reconocido por su estilo único, versatilidad y gran impacto en la música urbana.", foto: "https://media.allure.com/photos/615b6f687ed01b98fff0283c/master/pass/Allure_BadBunny_1.jpg" },
+    { id: "3", nombre: "Dua Lipa", descripcion: "Cantante y compositora británica de pop y dance, reconocida por sus hits internacionales y su estilo moderno.", foto: "https://www.hola.com/horizon/landscape/39e86606e8d5-img0437.jpg" },
+    { id: "4", nombre: "Beyoncé", descripcion: "Cantante, compositora y actriz estadounidense, considerada una de las artistas más influyentes, conocida por su voz poderosa y espectáculos en vivo.", foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmzz7pV-PEMSb55vLpUqWgIk3mq9ktuGeB_A&s" },
+    { id: "5", nombre: "Lady Gaga", descripcion: "Cantante, compositora y actriz estadounidense, destacada por su estilo teatral, su voz potente y su versatilidad musical.", foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMQ0urUjKWek6AMhGMbDohMVxIUIkNxfRHg&s" },
+    { id: "6", nombre: "Shakira", descripcion: "Cantante, compositora y bailarina colombiana, famosa por fusionar pop y ritmos latinos, así como por su voz y energía en el escenario.", foto: "https://media.vogue.es/photos/654376f5e92ad048cb3710bd/2:3/w_2560%2Cc_limit/Shakira.jpeg" },
+];
